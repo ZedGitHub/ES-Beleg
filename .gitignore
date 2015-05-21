@@ -3,3 +3,17 @@
 
 # Ada Library Information
 *.ali
+
+#only .tex should be synced
+*.aux
+*.bbl
+*.out
+*.synctex.gz
+*.toc
+*.log
+*.lot
+*.lof
+*.blg
+*.tcp
+*.tps
+hauptdatei.pdf
