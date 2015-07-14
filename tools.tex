@@ -3,13 +3,8 @@
 \section{Tools}
 \label{sec:tools}
 In diesem Abschnitt werden die Teile von SPARK behandelt, die sich auf den Korrektheitsbeweis beschäftigen und die damit verbundenen Tools vorgestellt.
+Abbildung ~\ref{fig:proofProcess} zeigt das Zusammenspiel der Spark Tools beim Beweisprozess. In den folgenden Abschnitten werden die gezeigten Tools vorgestellt. Dabei liegt der Fokus auf dem Examiner, da dieser das Hauptwerkzeug darstellt.
 
-Für beweise gibt es folgende Annotationen
-\textcolor{red}{einfügen}
-
-\textcolor{red}{Kapitelübersicht siehe S 216}
-
-\subsection{Motivation}
 \begin{figure}[h]
 \includegraphics[width=\textwidth{}]{images/ProofProcess.pdf}
 \label{fig:proofProcess}
@@ -62,20 +57,43 @@ Einige Beispiele für Fehlernachrichten:
 \end{verbatim}
 
 \subsubsection{Optionen}
-Wir beschränken uns an dieser Stelle auf eine tabellarische Übersicht der wichtigsten Optionen.
-\textcolor{red}{Tabelle!!!}
+Wir beschränken uns an dieser Stelle auf eine tabellarische Übersicht der wichtigsten Optionen, da eine Beschreibung aller Optionen den Rahmen der Arbeit sprengen würde.
 
 \begin{footnotesize}
-\begin{tabular}{|p{30mm}|p{30mm}|p{30mm}|p{30mm}|}
-\hline 
-Option & Abkürzung & Default & Beschreibung \\ 
-\hline 
-Analyse Optionen: \newline syntax\_check \newline flow\_analysis \newline vcs \newline rtc \newline exp\_checks & /sy \newline /fl=type \newline /vc \newline /rt \newline /e & information & nur Syntax check \newline Information oder Datenflussanalyse; Typ kann data oder information sein \newline produziert Verifikationsbedingungen \newline vcs und runtime Checks \newline rtc und overflow Checks \\ 
-\hline 
-nigger & nigger & nigger & nigger \\ 
-\hline 
-\end{tabular} 
+\begin{table}[h!]
+\centering
+\caption{Zusammenfassung der wichtigsten Optionen des Examiners.}
+\label{my-label}
+\begin{tabular}{|l|l|l|l|}
+\hline
+{\it Option}          & {\it Kürzel}     & {\it Default} & {\it Beschreibung}                     \\ \hline
+Analyse Optionen:     &                  &               &                                        \\
+syntax\_check         & /sy              &               & nur Syntax Check                       \\
+flow\_analysis        & /fl=type         & information   & Informations- oder Datenflussanalyse   \\
+                      &                  &               & kann data oder information sein.       \\
+                      &                  &               & Abkürzung:/fl=d oder /fl=i             \\
+vcs                   & /vc              &               & erzeugt Verifikationsbedingungen       \\
+rtc                   & /rt              &               & vcs und Laufzeitchecks                 \\
+exp\_checks           & /e               &               & rtc und Overflow Checks                \\ \hline
+Dateioptionen:        &                  &               &                                        \\
+report\_file          & /r=file\_spec    & spark.rep     & Name der Reportdatei                   \\
+listing\_extension    & /l=file\_type    & list          & Listing Dateiendung                    \\
+html                  & /ht              &               & erzeugt html                           \\
+index\_file           & /i=file\_spec    &               & Identifiziert Indexdatei               \\
+warning\_file         & /w=file\_spec    &               & Identifiziert Warnungsdatei            \\
+config\_file          & /conf=file\_spec &               & Identifiziert Zielkonfig Datei         \\ \hline
+Andere Optionen:      &                  &               &                                        \\
+annotation\_character & /an=character    & \#            & überschreibt normales --\#             \\
+statistics            & /st              &               & erzeugt Nutzerstatistik                \\
+plain\_output         & /pl              &               & unterdrückt Datum, etc. \\
+fdl\_identifiers      & /fd              & reserved      & fdl Zeichen sind reserviert            \\
+nofdl\_identifiers    & /nofd            &               & fdl Zeichen nicht reserviert           \\
+help                  & /he              &               & Fasst Optionen zusammen                \\ \hline
+\end{tabular}
+\end{table}
 \end{footnotesize}
+
+
 
 \subsubsection{Metadateien und Indexdateien}
 Ab einer gewissen Projektgröße wird es zu umständlich alle Dateinamen für den Examiner anzugeben. Hier schaffen Meta- und Indexdateiene Abhilfe.
@@ -125,13 +143,12 @@ spark /index_file=example.idx main.ada
 analysiert werden. Bei diesem Aufruf wird nur das Listing für \texttt{main} erstellt und alle Informationen über Fehler in den Abhängigkeiten sind im Report zu finden.
 
 Die Syntaxregeln für eine Indexdatei sind:
-\textcolor{red}{Punkte weg und pipe striche richtig!!!!!!!!!!!!!!!!!!!!}
-\begin{itemize}
+\begin{itemize}[label={}]
 \item index\_file ::= [super\_index] {index\_entry}
 \item super\_index ::= superindex is in file\_spec
-\item index\_entry ::= file\_entry | component\_entry
+\item index\_entry ::= file\_entry $|$ component\_entry
 \item file\_entry ::= unit\_name entry\_type is in file\_spec
-\item entry\_type ::= auxindex | main\_program | specification | body | subunit
+\item entry\_type ::= auxindex $|$ main\_program $|$ specification $|$ body $|$ subunit
 \item unit\_name ::= Ada\_unit\_name
 \item component\_entry ::= unit\_name components are unit\_name {, unit\_name}
 \end{itemize}
@@ -197,102 +214,102 @@ Es ist möglich Warnungen zu unterdrücken indem eine Kontrolldatei für die War
 
 \begin{verbatim}
 **********************************************************************
-Report of SPARK Examination
-SPARK95 Examiner with VC and RTC Generator Release 6.3 / 11.02
-Demonstration Version
+                     Report of SPARK Examination
+     SPARK95 Examiner with VC and RTC Generator Release 6.3 / 11.02
+                        Demonstration Version
 **********************************************************************
 
-DATE : 16-NOV-2002 13:45:12.26
+     DATE : 16-NOV-2002 13:45:12.26
 
 Options:
-index_file=DIALOG.IDX
-nowarning_file
-notarget_compiler_data
-noconfig_file
-source_extension=ADA
-listing_extension=LST
-nodictionary
-report_file=SPARK.REP
-no_html
-nostatistics
-fdl_identifiers
-flow_analysis=information
-ada95
-annotation_character=#
-profile=sequential
+    index_file=DIALOG.IDX
+    nowarning_file
+    notarget_compiler_data
+    noconfig_file
+    source_extension=ADA
+    listing_extension=LST
+    nodictionary
+    report_file=SPARK.REP
+    no_html
+    nostatistics
+    fdl_identifiers
+    flow_analysis=information
+    ada95
+    annotation_character=#
+    profile=sequential
 
 Selected files:
-DIALOG.ADA
+    DIALOG.ADA
 
 Index Filename(s) used were:
-C:\PRAXIS\DIALOG.IDX
-C:\PRAXIS\INVENT.IDX
-C:\PRAXIS\COMMON.IDX
+    C:\PRAXIS\DIALOG.IDX
+    C:\PRAXIS\INVENT.IDX
+    C:\PRAXIS\COMMON.IDX
 
 No Meta Files used
 
 Full warning reporting selected
 
 Source Filename(s) used were:
-C:\PRAXIS\DIALOG.ADA
-C:\PRAXIS\INVENT.ADS
-C:\PRAXIS\SPARKIO.ADS
+    C:\PRAXIS\DIALOG.ADA
+    C:\PRAXIS\INVENT.ADS
+    C:\PRAXIS\SPARKIO.ADS
 
 Source Filename: C:\PRAXIS\INVENT.ADS
 No Listing File
 
-Unit name: Inventory
-Unit type: package specification
-Unit has been analysed, any errors are listed below.
+    Unit name: Inventory
+    Unit type: package specification
+    Unit has been analysed, any errors are listed below.
 
 1 error(s) or warning(s)
 Line
-37 end Inventory;
-^1
+  37 end Inventory;
+         ^1
 --- ( 1) Warning:394:Variables of Type
-Inventories cannot be initialized using the
-facilities of this package.
+         Inventories cannot be initialized using the
+         facilities of this package.
 
 Source Filename: C:\PRAXIS\SPARKIO.ADS
 No Listing File
 
-Unit name: Spark_IO
-Unit type: package specification
-Unit has been analysed, any errors are listed below.
+    Unit name: Spark_IO
+    Unit type: package specification
+    Unit has been analysed, any errors are listed below.
 
 2 error(s) or warning(s)
 
 Line
-24 with Ada.Text_IO;
-^1
---- ( 1) Warning : 1 : The identifier Ada is
-either undeclared or not visible at this point.
+  24 with Ada.Text_IO;
+          ^1
+--- ( 1) Warning:1:The identifier Ada is
+         either undeclared or not visible at this point.
 
-308 end Spark_IO;
+ 308 end Spark_IO;
 
---- ( 2) Warning : 10: The private part of
-package Spark_IO is hidden - hidden text is 
-ignored by the SPARK examiner.
+--- ( 2) Warning:10:The private part of
+         package Spark_IO is hidden - hidden text is 
+         ignored by the SPARK examiner.
 
 Source Filename: C:\PRAXIS\DIALOG.ADA
 Listing Filename: C:\PRAXIS\DIALOG.LST
 
-Unit name: Dialogue
-Unit type: main program
-Unit has been analysed, any errors are listed below.
+    Unit name: Dialogue
+    Unit type: main program
+    Unit has been analysed, any errors are listed below.
 
 2 error(s) or warning(s)
 
 Line
-52 while True loop
-^1
-!!! ( 1) Flow Error : 40 : Exit condition is stable, of
-index 0.
+  52 while True loop
+           ^1
+!!! ( 1) Flow Error:40:Exit condition is stable, of
+         index 0.
 
-72 end Dialogue;
+  72 end Dialogue;
 
---- ( 2) Warning : 400: Variable Found is declared
-but not used.
+--- ( 2) Warning:400:Variable Found is declared
+         but not used.
 
 --End of file-------------------------------------------
 \end{verbatim}
