@@ -1,1 +1,36 @@
 \section{Einleitung}
+Software ist in unserer heutigen Gesellschaft nicht mehr wegzudenken. Die meißten Bereiche unseres Lebens werden von einer Software erfasst, bzw. gesteuert. Viele dieser Softwaresysteme sind unkritisch. So kann ein Officeprogramm abstürzen ohne, dass dadurch Menschenleben gefährdet werden. Wenn der Nutzer regelmäßig speichert hätte solch ein Absturz nur minimale Auswirkungen. Wenn jedoch die ABS Steuerung eines Autos für kurze Zeit versagt, kann dies schwerwiegende Folgen haben.
+Für kritische Umgebungen gibt es spezielle Sprachen, wie z.B. \textbf{Ada}.
+Ada erfüllt alle Kriterien einer solchen Sprache\footnote{Quelle: Vorlesungefolien Böhm SS2015}
+\begin{itemize}
+\setlength\itemsep{0.5em}
+\item Portierbarkeit
+\item Einsatz moderner SW-Engineering Methoden
+\item Multitasking
+\item Schnittstellen zu anderen Programmiersprachen
+\item Funktionsfähigkeit \begin{enumerate}
+\item Sichere Datentypen
+\item Willkürliche Sprünge
+\item Speicherüberschreibungen
+\end{enumerate}
+\item Verfügbarkeit
+\begin{enumerate}
+\item Logische Gültigkeit
+\item Initialisierungsfehler
+\item Ausdrucksauswertungsfehler
+\item Leistung
+\end{enumerate}
+\item Zuverlässigkeit
+\begin{enumerate}
+\item Mehrfache Referenzen
+\item Seiteneffekte durch Unterprogramme
+\item Speicherüberwachung
+\end{enumerate}
+\item Verständlichkeit
+\item Testbarkeit, Verifizierbarkeit
+\item Wiederherstellbarkeit
+\item Wartbarkeit, Erweiterbarkeit und Wiederverwendbarkeit
+\end{itemize}
+
+Für spezielle Anwendungsfälle gibt es das Subset von Ada \textbf{Spark}. Spark ist eine Teilsprache von Ada, d.h. es wurden einige Konzepte von Ada weggelassen, was zu einem stark eingeschränkten Sprachkern geführt hat.
+In dieser Arbeit werden wir die sprachlichen Unterschiede zu Ada erläutern und anschließend auf die speziellen Analysetools eingehen, die Spark zur Verfügung stellt. Sofern nicht anders ausgewiesen ist unsere Quelle das Buch High Integrity Software The Spark Approach to Safety and Security von John Barnes.

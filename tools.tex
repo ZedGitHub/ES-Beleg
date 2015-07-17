@@ -3,18 +3,17 @@
 \section{Tools}
 \label{sec:tools}
 In diesem Abschnitt werden die Teile von SPARK behandelt, die sich auf den Korrektheitsbeweis beschäftigen und die damit verbundenen Tools vorgestellt.
-Abbildung ~\ref{fig:proofProcess} zeigt das Zusammenspiel der Spark Tools beim Beweisprozess. In den folgenden Abschnitten werden die gezeigten Tools vorgestellt. Dabei liegt der Fokus auf dem Examiner, da dieser das Hauptwerkzeug darstellt.
+Abbildung ~\ref{fig:proofProcess} zeigt das Zusammenspiel der Spark Tools beim Beweisprozess. In den folgenden Abschnitten werden die gezeigten Tools vorgestellt. Dabei liegt der Fokus auf dem Examiner, da dieser das Hauptwerkzeug darstellt. Wir werden ausschließlich auf die Tools eingehen, für Informationen zu den Beweistechniken sei auf unsere Quelle verwiesen.
 
 \begin{figure}[h]
 \includegraphics[width=\textwidth{}]{images/ProofProcess.pdf}
 \label{fig:proofProcess}
 \caption{Der gesamte Beweisprozess}
 \end{figure}
-Theorie hinter beweisverfahren der quelle entnehmen
 
 \subsection{Examiner}
 \label{sec:examiner}
-Das wichtigste Tool ist der SPARK Examiner, der es erlaubt Programme abhängig von ihrer Wichtigkeit auf drei Ebenen zu analysieren. Die niedrigste Stufe ist dabei die \textbf{Datenflussanalyse}. Hier wird überprüft, dass Parameter und globale Variablen korrekt genutzt, Variablen nicht vor einer Wertzuweisung gelesen werden, Werte nicht ungenutzt bleiben, usw. Die derives Annotation wird bei der Flow Analyse ignoeriert.
+Das wichtigste Tool ist der SPARK Examiner, der es erlaubt Programme abhängig von ihrer Wichtigkeit auf drei Ebenen zu analysieren. Die niedrigste Stufe ist dabei die \textbf{Datenflussanalyse}. Hier wird überprüft, dass Parameter und globale Variablen korrekt genutzt, Variablen nicht vor einer Wertzuweisung gelesen werden, Werte nicht ungenutzt bleiben, usw. Die derives Annotation wird bei der Flow Analyse ignoriert.
 Diese spielen erst bei der \textbf{Informationsflussanalyse} eine Rolle, welche die Norm für die meißten Programme darstellt. Es wird eine Datenflussanalyse durchgeführt und weiterhin wird die derives Annotation ausgewertet. Dadurch wird erkannt, wenn Variablen und Parameter korrekt genutzt werden. Da nur die statischen semantischen Beziehungen betrachtet werden und nicht dynamische Werte, wird diese Analyse auch manchmal flache Verfifikation genannt.
 Bei sehr kritischer Software kommen Verifikationskonditionen, Flussanalyse und Beweis Annotationen zum Einsatz.
 
