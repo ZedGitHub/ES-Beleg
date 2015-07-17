@@ -155,4 +155,48 @@ NextLine: Line;
 \end{lstlisting}
 
 Alle \textit{constraints} in \texttt{Spark} sind \textit{statisch}, haben also \textit{statische Grenzen}, was dazu führt, dass in \texttt{Spark} keine Arrays deklariert werden können, deren Grenzen nicht zur Programmausführung bekannt sind.
+Es gibt keinen \textit{slices} von \textit{arrays} in \texttt{Spark} ebenso ist \textit{sliding} nicht möglich.
+
+
+\subsubsection{Aggregate}
+\label{subsubsec:Aggregate}
+
+\begin{lstlisting}[caption={illegal Aggregates}, label=spark:illegalAggregates]
+Z:Complex:=(0.0,0.0);--falsch
+Z:Complex:=(Re | Im => 0.0);--falsch
+Z:Complex:=(others => 0.0);--falsch
+\end{lstlisting}
+\begin{lstlisting}[caption={legal Aggregates}, label=spark:legalAggregates]
+Z:Complex:=Complex'(0.0,0.0);
+Z:Complex:=Complex'(Re => 0.0,Im => 0.0);
+\end{lstlisting}
+
+\subsubsection{Ausdrücke}
+\label{subsubsec:Ausdruecke}
+Ausdrücke beschreiben die Berechnung eines Wertes. Da \texttt{Spark} keine Überladung kennt(außer den vordefinierten Operationen wie +), gibt es keine Notwendigkeit zur Auflösung einer Überladung und der Typ eines Ausdrucks ist bestimmt durch die Typen seiner Bestandteile und der Operatoren und nicht durch den Kontext. Im Allgemeinen sind Ausdrücke in \texttt{Spark} denen aus \texttt{Ada} sehr ähnlich, mit ein paar Ausnahmen,\\
+Die möglichen Operatoren sind in aufsteigender Priorität:
+\begin{itemize}
+	\item logische Operatoren: \textit{and, or, xor} zzgl. $and then, or else$
+	\item realtionale operatoren: $=, /=, <, <=,> ,>=$ zzgl. $in, not in$
+	\item binär additive Operatoren: $+, - , \&$
+	\item unär additive Operatoren: $+, -$
+	\item multiplicative Operatoren: $*, /, mod, rem$
+	\item höchste Priorität: $**, abs, not$
+\end{itemize}
+Wie schon erwähnt ist in \texttt{Spark} kein \textit{sliding} möglich. \textit{Ordnungsrelationen} können in \texttt{Spark} nicht auf \textit{Boolean} angewandt werden, ebenso nicht auf \textit{eindimensionale Array} von \textit{diskreten Typen}. Beides ist in \texttt{Ada} möglich. \textit{Strings} bilden hier aber eine Ausnahme in \texttt{Spark}.\\
+\textit{Unäre Operatoren} können in \texttt{Spark} auf alle \textit{numerischen Typen} angewandt werden, nicht jedoch auf \textit{modulare}, das selbe gilt für Operatoren höchster Ordnung.
+
+
+\subsubsection{Konstanten und statische Ausdrücke}
+\label{subsubsec:Konstanten und statische Ausdruecke}
+Objekte, welche als Konstanten deklariert werden, müssen initialisiert werden, mit einem Ausdruck, dessen Wert zur Ausführungszeit bekannt ist. Ein konstanter Ausdruck ist jeder Ausdruck, der der \textbf{keines} der folgenden enthält:
+
+\begin{itemize}
+	\item einen Variablennamen
+	\item einen Funktionsaufruf(außer den vordefinierten Operatoren/Attributen)
+	\item eine Komponente mit Index
+	\item eine Komponete, die einen record darstellt
+\end{itemize}
+
+In \texttt{Ada} in konstant gleichzusetzen mit \textit{read only}, wohingegen in \texttt{Spark} der Wert der konstanten Feststehen muss. 
 
