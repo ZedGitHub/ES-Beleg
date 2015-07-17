@@ -1,9 +1,11 @@
-\subsection{Prinzipien}
-\label{subsec:Prinzipien}
+\section{Prinzipien}
+\label{sec:Prinzipien}
+\texttt{Spark} ist einen Teilmenge von \texttt{Ada}, welche besonders auf erhöhte Sicherheit bedacht ist. Aus diesem Grund werden einige Möglichkeiten von \texttt{Ada} beschnitten. Das übergeordnete Ziel ist es, eine statische Analyse des Codes zu ermöglichen. In erster Linie werden dazu Annotationen eingeführt, welche den Ada-Code ergänzen und Informationen für den Examiner(s. ~\ref{sec:examiner}) bereitstellen.
+
 \subsubsection{Annotationen}
 \label{subsubsec:Annotationen}
 Zur Kompilierung von \texttt{Spark} wird ein \texttt{Ada}-Kompiler verwendet, das heißt jedes \textit{gültige} Programm in \texttt{Spark} ist auch in \texttt{Ada} gültig. Es gibt jedoch viel Dinge , die in \texttt{Spark} nicht gültig sind, jedoch in \texttt{Ada}. \texttt{Spark} ist somit eine Teilmenge von \texttt{Ada}, ergänzt um zusätzliche Annotationen mit zusätzlichen Angaben für die Prüfungstools von \texttt{Spark}. Da diese Annotationen als Kommentare ausgeführt sind, bleibt durch sie ein Programm immer noch in \texttt{Ada} gültig, werden vom Kompiler aber nicht verarbeitet, sondern sind nur für den \textit{Examiner} von \texttt{Spark} wichtig.\\
-
+Der Examiner gleicht die Angaben in den Annotationen mit denen im restlichen Code ab und prüft, ob das, was in den Annotationen ausgedrückt wird, sich mit dem was der Code macht, deckt. Der Aufwand beim Schreiben des Codes ist zwar um einiges erhöht, doch wird so eine komplette Analyse des Datenflusses möglich, da alle Interfaces festgelegt werden müssen.
 \subsubsection{Unterprogramme}
 \label{subsubsec:Unterprogramme}
 
