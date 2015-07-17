@@ -1,2 +1,4 @@
 \subsection{Packages und Sichtbarkeit}
 \label{subsec:PackagesUndSichtbarkeit}
+Packages können nicht in anderen Packages deklariert werden. Unterprogramme müssen getrennt von ihre \textit{bodies} in packages deklariert werden. Es gibt keine \textit{use}-Anweisung in \texttt{Spark}. \textit{inherit}-Annotationen sind notwendig in \texttt{Spark} um packages zu inkludieren. Während der Initialisierung eines packages können nur Variablen dieses packages genutzt werden.\\
+Ein \textit{public child} ist nicht sichtbar für den \textit{body} des \textit{parents}. Ein \textit{public child} ist nicht sichtbar für \textit{private siblings} und umgekehrt. Es gibt keine Kind Unterprogramme und das einzige Unterprogramm, welches allein ausgeführt werden kann, ist das \textit{main program}.
