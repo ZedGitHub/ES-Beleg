@@ -79,7 +79,7 @@ Möchte man nur eine Umbenennung eines Typen vornehmen, so kann auch eine Kurzfo
 subtype Color is Colour;
 \end{lstlisting}
 
-Im Gegensatz zu \texttt{Ada} darf eine \textit{static range} in \texttt{Spark} niemal \textit{null} bzw. \textit{empty} sein, d.h. Die obere Grenze muss größer oder gleich der unteren sein(\textit{null ranges} in \textit{loops} sind erlaubt).
+Im Gegensatz zu \texttt{Ada} darf eine \textit{static range} in \texttt{Spark} niemals \textit{null} bzw. \textit{empty} sein, d.h. Die obere Grenze muss größer oder gleich der unteren sein(\textit{null ranges} in \textit{loops} sind erlaubt).
 
 \begin{lstlisting}[caption={Typ des subtyps}, label=spark:Typ des subtyps]
 type Colour is (White, Red, Yellow, Green, Blue, Brown);
