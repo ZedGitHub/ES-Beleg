@@ -2,7 +2,7 @@
 
 \section{Tools}
 \label{sec:tools}
-In diesem Abschnitt werden die Teile von SPARK behandelt, die sich auf den Korrektheitsbeweis beschäftigen und die damit verbundenen Tools vorgestellt.
+In diesem Abschnitt werden die Teile von SPARK behandelt, die sich mit dem Korrektheitsbeweis beschäftigen und die damit verbundenen Tools vorgestellt.
 Abbildung ~\ref{fig:proofProcess} zeigt das Zusammenspiel der Spark Tools beim Beweisprozess. In den folgenden Abschnitten werden die gezeigten Tools vorgestellt. Dabei liegt der Fokus auf dem Examiner, da dieser das Hauptwerkzeug darstellt. Wir werden ausschließlich auf die Tools eingehen, für Informationen zu den Beweistechniken sei auf unsere Quelle verwiesen.
 
 \begin{figure}[h]
@@ -13,8 +13,8 @@ Abbildung ~\ref{fig:proofProcess} zeigt das Zusammenspiel der Spark Tools beim B
 
 \subsection{Examiner}
 \label{sec:examiner}
-Das wichtigste Tool ist der SPARK Examiner, der es erlaubt Programme abhängig von ihrer Wichtigkeit auf drei Ebenen zu analysieren. Die niedrigste Stufe ist dabei die \textbf{Datenflussanalyse}. Hier wird überprüft, dass Parameter und globale Variablen korrekt genutzt, Variablen nicht vor einer Wertzuweisung gelesen werden, Werte nicht ungenutzt bleiben, usw. Die derives Annotation wird bei der Flow Analyse ignoriert.
-Diese spielen erst bei der \textbf{Informationsflussanalyse} eine Rolle, welche die Norm für die meißten Programme darstellt. Es wird eine Datenflussanalyse durchgeführt und weiterhin wird die derives Annotation ausgewertet. Dadurch wird erkannt, wenn Variablen und Parameter korrekt genutzt werden. Da nur die statischen semantischen Beziehungen betrachtet werden und nicht dynamische Werte, wird diese Analyse auch manchmal flache Verfifikation genannt.
+Das wichtigste Tool ist der SPARK Examiner, der es erlaubt, Programme abhängig von ihrer Wichtigkeit auf drei Ebenen zu analysieren. Die niedrigste Stufe ist dabei die \textbf{Datenflussanalyse}. Hier wird überprüft, dass Parameter und globale Variablen korrekt genutzt, Variablen nicht vor einer Wertzuweisung gelesen werden, Werte nicht ungenutzt bleiben, usw. Die derives Annotation wird bei der Flow Analyse ignoriert.
+Diese spielen erst bei der \textbf{Informationsflussanalyse} eine Rolle, welche die Norm für die meisten Programme darstellt. Es wird eine Datenflussanalyse durchgeführt und weiterhin wird die derives Annotation ausgewertet. Dadurch wird erkannt, wenn Variablen und Parameter korrekt genutzt werden. Da nur die statischen semantischen Beziehungen betrachtet werden und nicht dynamische Werte, wird diese Analyse auch manchmal flache Verfifikation genannt.
 Bei sehr kritischer Software kommen Verifikationskonditionen, Flussanalyse und Beweis Annotationen zum Einsatz.
 
 \subsubsection{Ausführungsreihenfolge}
@@ -36,7 +36,7 @@ Es werden ein Report \texttt{spark.rep} und die drei Listing Dateien \texttt{mai
 Aufgrund der Abhängigkeiten müssen (im Gegensatz zur Kompilierung) bei einer Änderung alle Dateien neu vom Examiner betrachtet werden.
 
 \subsubsection{Nachrichten}
-Die Analyse des Examiner läuft in mehreren Schritten ab. Zunächst wird eine lexikographische und Syntaxanalyse durchgeführt. Dabei werden auchdie Abhängigkeiten aufgelöst. Die Ausgabe in Form von Fehler- und Warnmeldungen ähnelt der eines Compilers. In dieser Phase werden auch Inkonsistenzen in Bezug aud Annotationen aufgedeckt.
+Die Analyse des Examiner läuft in mehreren Schritten ab. Zunächst wird eine lexikographische und Syntaxanalyse durchgeführt. Dabei werden auch die Abhängigkeiten aufgelöst. Die Ausgabe in Form von Fehler- und Warnmeldungen ähnelt der eines Compilers. In dieser Phase werden auch Inkonsistenzen in Bezug auf Annotationen aufgedeckt.
 Interessanter wird es bei der Flussanalyse. Die Analyse wird in Unterprogrammblöcken ausgeführt.
 Die Ausgaben haben folgende Form:
 \begin{verbatim}
@@ -95,7 +95,7 @@ help                  & /he              &               & Fasst Optionen zusamm
 
 
 \subsubsection{Metadateien und Indexdateien}
-Ab einer gewissen Projektgröße wird es zu umständlich alle Dateinamen für den Examiner anzugeben. Hier schaffen Meta- und Indexdateiene Abhilfe.
+Ab einer gewissen Projektgröße wird es zu umständlich alle Dateinamen für den Examiner anzugeben. Hier schaffen Meta- und Indexdateien Abhilfe.
 
 Eine \textbf{Metadatei} ist eine simple Textdatei, die pro Zeile den Namen einer Quelldatei enthält. Ein Beispiel ist die Datei \texttt{meta.smf}
 
@@ -206,7 +206,7 @@ Der Examiner stellt zunächst fest, dass er den body von \texttt{The\_Stack} ben
 Es wäre weiterhin möglich \texttt{main.idx} zum Superindex zu machen und die anderen Angaben in \texttt{stackadb.idx} zu machen. Generell gibt es scheinbar keine Konventionen für das Anlegen der Indexdateien und man sollte sich nach der Struktur des jeweiligen Projektes richten. Schleifenabhängigkeiten sind zu vermeiden, da diese nicht vor dem Aufruf entdeckt werden und somit zu einer Dauerschleife führen.
 
 \subsubsection{Beispiel Report}
-Das hier gezeigte Report Beispiel zeigt die genutzen Optionen und Dateien und fasst alle Fehler und Warnungen zusammen. In der Spezifikation von Spark\_IO gibt es zwei Warnungen. Die erste bezieht sich auf die with clause für Ada.Text\_IO. Die Warnung kommt zustande, da die Spezifikation dem Examiner nicht zur Verfügung stand.
+Das hier gezeigte Report Beispiel zeigt die genutzten Optionen und Dateien und fasst alle Fehler und Warnungen zusammen. In der Spezifikation von Spark\_IO gibt es zwei Warnungen. Die erste bezieht sich auf die with clause für Ada.Text\_IO. Die Warnung kommt zustande, da die Spezifikation dem Examiner nicht zur Verfügung stand.
 Die zweite Warnung zeigt, dass die privaten Teile von Spark\_IO versteckt sind.
 
 Es ist möglich Warnungen zu unterdrücken indem eine Kontrolldatei für die Warnungen mitgegeben wird. Diese hat die Endung \texttt{.wrn} und enthält die Typen der zu unterdrückenden Warnungen.
@@ -340,13 +340,13 @@ sparksimp
 \end{verbatim}
 werden im aktuellen Verzeichnis und allen Unterverzeichnissen automatisch alle Dateien bearbeitet.
 
-Der Simplifier kann auch Pfadfunktionen vereinfachen, dazu muss beim Aufruf einer \texttt{pfs} Datei die Dateiendungmit angegeben werden. 
+Der Simplifier kann auch Pfadfunktionen vereinfachen, dazu muss beim Aufruf einer \texttt{pfs} Datei die Dateiendung mit angegeben werden. 
 
 \subsection{Proof Checker}
 Die Arbeit des Proof Checkers verläuft nicht komplett automatisch, da dies den Rahmen des möglichen sprengen würde. Das Tool ist sehr komplex und mächtig, deswegen können hier nur die Grundzüge erläutert werden.
 
-Ein wichtiger Aspekt des Proof Checkers ist das Logging. Im Log enthalten sind die Hypothesen und Regeln, die füreinen Beweis genutzt wurden und eine Übersicht über die noch zu erledigenden Beweise.
-Der Proof Checker wendet einen Satz von Regeln und Strategien an um seine Arbeit zu verrichten. Exemplarisch seien hier einige Regeln genannt. Es gibt simple arithmetisiche Regeln.
+Ein wichtiger Aspekt des Proof Checkers ist das Logging. Im Log enthalten sind die Hypothesen und Regeln, die für einen Beweis genutzt wurden und eine Übersicht über die noch zu erledigenden Beweise.
+Der Proof Checker wendet einen Satz von Regeln und Strategien an um seine Arbeit zu verrichten. Exemplarisch seien hier einige Regeln genannt. Es gibt simple arithmetische Regeln.
 \begin{verbatim}
 arith(3): X + 0 may_be_replaced_by X.
 assoc(4): A*(B*C) may_be_replaced_by (A*B)*C.
@@ -362,7 +362,7 @@ odd(5): odd(X) may_be_deduced_from [odd(-X)].
 \end{verbatim}
 
 In der gleichen Datei können beliebig viele Regeln jeder Art gespeichert werden.
-Bei der deklaration eigener Regeln ist undbedingt auf deren Korrektheit zu achten, da sonst das ganze Konzept des Proof Checkers ad absurdum geführt würde.
+Bei der Deklaration eigener Regeln ist unbedingt auf deren Korrektheit zu achten, da sonst das ganze Konzept des Proof Checkers ad absurdum geführt würde.
 
 \subsection{Proof Obligation Summarizer}
 Nachdem der Simplifier seine Arbeit verrichtet hat, kann der Proof Obligation Summarizer(\textbf{POGS}) mit
