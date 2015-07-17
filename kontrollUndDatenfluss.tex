@@ -1,2 +1,21 @@
 \subsection{Kontroll- und Datenfluss}
 \label{subsec:KontrollUndDatenfluss}
+\textit{if}- und \textit{case}-Strukturen sind in \texttt{Spark} genauso wie in \texttt{Ada}. \textit{for}-Schleifen sind leicht anzupassen, s. Listing~\ref{spark:for-Schleifen}.
+\begin{lstlisting}[caption={for-Schleifen}, label=spark:for-Schleifen]
+for I in 1 .. 10 loop  --falsch
+
+for I in Integer range 1 .. 10 loop
+\end{lstlisting}
+
+\textit{while}- und \textit{for}- Schleifen ebenso wie einfache \textit{loop}-Anweisungen können auch \textit{exit}-Anweisungen enthalten. Auch mehrere exit-Anweisungen in einem \textit{loop} werden immer alle ausgewertet.
+\begin{lstlisting}[caption={exit in loop}, label=spark:exit in loop]
+loop
+	Get(CurrentCharacter);
+	exit Search when CurrentCharacter = '*';
+end loop Search;
+\end{lstlisting}
+
+\textit{return}-Anweisungen können in \texttt{Spark} nur in Funktionen verwendet werden und das auch nur exakt einmal am ende der Funktion. Es ist nicht möglich sie wie in \texttt{Ada} zum zurückkehren zum Prozeduraufruf zu verwenden.\\\
+
+
+Es gibt in \texttt{Spark} keine \textit{Exception}, \textit{Labels}, \textit{Goto}-Anweisungen, \textit{Blöcke}. Unterprogramme können nicht rekursiv aufgerufen werden.
