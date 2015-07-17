@@ -1,2 +1,48 @@
 \subsection{Prinzipien}
 \label{subsec:Prinzipien}
+\subsubsection{Annotationen}
+\label{subsubsec:Annotationen}
+Zur Kompilierung von \texttt{Spark} wird ein \texttt{Ada}-Kompiler verwendet, das heißt jedes \textit{gültige} Programm in \texttt{Spark} ist auch in \texttt{Ada} gültig. Es gibt jedoch viel Dinge , die in \texttt{Spark} nicht gültig sind, jedoch in \texttt{Ada}. \texttt{Spark} ist somit eine Teilmenge von \texttt{Ada}, ergänzt um zusätzliche Annotationen mit zusätzlichen Angaben für die Prüfungstools von \texttt{Spark}. Da diese Annotationen als Kommentare ausgeführt sind, bleibt durch sie ein Programm immer noch in \texttt{Ada} gültig, werden vom Kompiler aber nicht verarbeitet, sondern sind nur für den \textit{Examiner} von \texttt{Spark} wichtig.\\
+
+\subsubsection{Unterprogramme}
+\label{subsubsec:Unterprogramme}
+
+Listing~\ref{spark:derive} zeigt ein Beispiel der Annotation \textit{derives}, welche dem Examiner zeigt, dass der am Ende der Variablen X zugewiesenen Wert vom Initialwert der Variablen Y abhängt und umgekehrt.
+\begin{lstlisting}[caption={derive Beispiel}, label=spark:derive]
+procedure Exchange(X,Y:in out Float)
+--# derives X from Y &
+--# 				Y from X;
+is
+	T:Float;
+begin
+	T := X; X := Y; Y := T;
+end Exchange;
+\end{lstlisting}
+
+Listing~\ref{spark:GlobaleVariablen} zeigt die Nutzung der globalen Variablen Seed. Die Annotation \textit{own} macht die Variable für andere Annotationen sichtbar, \textit{initializes} zeigt an, dass sie Initialisisert wird.
+
+
+\begin{lstlisting}[caption={Globale Variablen}, label=spark:GlobaleVariablen]
+package RandomNumbers
+--# own Seed;
+--# initializes Seed;
+is
+	procedure Random(X: out Float);
+	--#global in out Seed;
+	--# derives X,Seed from Seed;
+end RandomNumbers;
+
+package body RandomNumbers
+	Seed:Integer;
+	SeedMax: constant Integer:= ...;
+	
+	procedure Random(X: out Float) is
+	begin
+		Seed:= ...;
+		X := Float(Seed) / Float(SeedMax);
+	end Random;
+	
+begin		--Initialization part
+	Seed:= 12345
+end RandomNumbers;
+\end{lstlisting}
